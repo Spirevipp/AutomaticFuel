@@ -1,0 +1,9 @@
+{
+  "name": "AutomaticFuel",
+  "description": "Pull fuel/ore from Carts and chests.   Windmills, Spinning Wheels, Fuel Smelters and Kilns from items in chest or off the ground.  Stack Smelters",
+  "version_number": "1.3.0",
+  "website_url": "https://github.com/tastychickenlegs",
+  "dependencies": [
+    "denikson-BepInExPack_Valheim-5.4.1900"
+  ]
+}
