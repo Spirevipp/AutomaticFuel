@@ -1,88 +1,136 @@
-﻿# Server Sync Mod Template
+# Automatic Fuel
 
-Can be used to already have your project set up and ready to go with ServerSync and basic version checking. Please see the [Original Repository](https://github.com/blaxxun-boop/ServerSync) if you have to update, or have further questions this template might not answer.
+Fuels torches, campfires, windmills, spinning wheels, hearths, kilns and smelters
+- Fuels from the ground
+- Fuels from chests and custom chests
+- Stack Smelters - Default is True:  Removes most smoke and isblocked check
+- Remove the ServerSync Version and Client checks.  Default is True and does check.  Can be turned off in the config.
+- Blast Furnace can take all Fuel - NEW - 
 
-Thank you Blaxxun for ServerSync!
+I'll do my best to help with any issues.  
 
-ServerSync
-==========
+[Reach Me on Discord](https://discord.com/users/TastyChickenLegs#4818)
+### About the Mod:
+__________________
+<b>from Aedenthorn's AutoFuel Mod </b>
 
-Bundling the dll
-----------------
+#### Rebuilt by TastyChickenLegs now with ServerSync
 
-You need to ensure the dll is available to your mod.
+#### Mistlands Compatible
 
-Including the dll is best done via ILRepack (https://github.com/ravibpatel/ILRepack.Lib.MSBuild.Task). You can load this package (ILRepack.Lib.MSBuild.Task) from NuGet.
+This mod is a combination of my own code and scaled down version of Aedenthorn's AutoFuel mod.  
 
-Then create a file ILRepack.targets in your project folder. File content:
-```
-<?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Target Name="ILRepacker" AfterTargets="Build">
-        <ItemGroup>
-            <InputAssemblies Include="$(TargetPath)" />
-            <InputAssemblies Include="$(OutputPath)\ServerSync.dll" />
-        </ItemGroup>
-        <ILRepack Parallel="true" DebugInfo="true" Internalize="true" InputAssemblies="@(InputAssemblies)" OutputFile="$(TargetPath)" TargetKind="SameAsPrimaryAssembly" LibraryPath="$(OutputPath)" />
-    </Target>
-</Project>
-```
+Credit goes to Aedenthorn for the idea and original mod.
 
-Using the ServerSync
 --------------------
 
-Declare a variable:
+Fuels torches, campfires, windmills, spinning wheels, hearths, kilns and smelters from items in chests or off the ground
 
-`ServerSync.ConfigSync configSync = new ServerSync.ConfigSync("my.mod.guid") { DisplayName = "My Mod Name", CurrentVersion = "1.2.3", MinimumRequiredVersion = "1.2.0" };`
+`A config file BepInEx/config/tastychickenlegs.automaticfuel.cfg is created after running the game once with this mod)`
 
-All of DisplayName, CurrentVersion and MinimumRequiredVersion are optional.
-If CurrentVersion is specified, then the user will see a warning in their BepInEx log if the server version does not match the client version.
-If also MinimumRequiredVersion is specified and the client has an older version than the servers MinimumRequiredVersion, the client will be immediately disconnected and see an error message, explaining why.
-To display a friendly name for your mod in the error messages, specify DisplayName, otherwise the primary identifier will be used.
-Also note that the primary identifier (I propose using the GUID, "my.mod.guid") should never be changed (changing it will break backwards compatibility completely).
+![ScreenShot](https://i.ibb.co/CBRDPKZ/spin.png)
 
-There are two public methods on the ServerSync.ConfigSync class:
+You can adjust the config values by editing this file using a text editor or in-game using the Config Manager﻿.
 
-- `AddConfigEntry<T>(ConfigEntry<T> configEntry)`
+|Config Option|Definition
+|---|---|
+|verifyClient| This turns on and off the need to verify other clients.  Users can now play without the mod on a server with the mod.|
+|fireplaceRange| The maximum range to pull fuel from containers for fireplaces|
+|smelterOreRange| The maximum range to pull fuel from containers for smelters|
+|smelterFuelRange| The maximum range to pull ore from containers for smelters|
+|fuelDisallowTypes| Types of item to disallow as fuel (i.e. anything that is consumed), comma-separated.|
+|oreDisallowTypes| Types of item to disallow as ore (i.e. anything that is transformed), comma-separated).|
+|refuelStandingTorches| Refuel standing torches|
+|refuelWallTorches| Refuel wall torches|
+|refuelFirePits| Refuel fire pits|
+|restrictKilnOutput| Restrict kiln output|
+|restrictKilnOutputAmount| Amount of coal to shut off kiln fueling|
+|distributedFilling| If true, refilling will occur one piece of fuel or ore at a time, making filling take longer but be better distributed between objects|
+|leaveLastItem| Don't use last of item in chest|
+|StackSmelters| Allow the ability to stack smelters and kilns.  Turns off the smoke and prohibits the blocked smoke check.|
+|RestrictKiln| Turn off the Kiln|
+|RefuelHotTub| Turn on and off refueling of hottub.. bathtub whatever|
+|RefuelHearth| Turn on and off the refueling of the hearth|
 
-  Registers a BepInEx ConfigEntry to be synchronized.
+Custom Toggle key to turn on and off mod in-game. 
 
-- `AddLockingConfigEntry<T>(ConfigEntry<T> lockingConfig) where T : IConvertible`
+You can adjust the ranges for containers and ground pulling (default 10 meters each).
 
-  Registers a BepInEx ConfigEntry to be synchronized, whose value determines whether the config is locked. If the value is zero when converted to integer, the config is not locked. Otherwise it is locked.
-  This method must be called at most once. If not called at all, the config will never be locked.
+Reset the config by opening the in-game console `(F5)` and typing autofuel reset and pressing Enter.
 
-Useful properties:
+___________________________
+#### Installation: (manual)  
 
-- `static bool ProcessingServerUpdate`
+Extract DLL from zip file into `"<GameDirectory>\Bepinex\plugins"`  
+Start the game.
+___________________________
+#### Installation (Automatic)
+Use the R2Modmanager on Thunderstore.  Search for the mod and install
+___________________________
 
-  The mod is receiving and applying configs from the server. Used internally to avoid config writing loops.
+#### Server Configuration
+``````
+For Servers that want to control ther configuration, install on the server and clients.  
+The server config will push down.
 
-- `bool IsSourceOfTruth`
+For Servers that cannot use mods, simply install this on the clients only and it will work just fine.  Clients will all need
+the same settings in their config files for optimal results.
 
-  Whether the local config is currently being used. False if a remote config is currently applied.
+For people that run a server and don't want to verify clients turn the "verifyclients" setting off.
+``````
+### Version Information
+___________________________
 
-Additionally, there is a class `ServerSync.CustomSyncedValue<T>(ConfigSync, string Identifier, T value = default)` to synchronize arbitrary data (more precisely: all data which Valheims native serialization supports).
-This class registers itself to the passed ConfigSync instance upon instantiation.
-It provides a Value property and a ValueChanged event handler.
-The Identifier must be unique for the given ConfigSync instance.
+1.2.0
+
+- Added ability to turn off Hearth and BathTub.  This allows the mod to coexists with other mods like BetterWards 
+
+1.1.9
+
+- Fixed bug in turning off Kilns.  When kilns were turned off all "Smelters" stopped working.
 
 
-Handy config function
----------------------
+1.1.8
 
-To avoid manually adding each config entry to the ConfigSync instance, I propose to add a simple wrapper `config()` (with the same signature as `Config.Bind()`) to your UnityBasePlugin class:
+- Option to turn off Kilns
+- Ability to pull from carts
+- Added ownership checks to containers for multiplayer duping
 
-```
-ConfigEntry<T> config<T>(string group, string name, T value, ConfigDescription description, bool synchronizedSetting = true)
-{
-    ConfigEntry<T> configEntry = Config.Bind(group, name, value, description);
 
-    SyncedConfigEntry<T> syncedConfigEntry = configSync.AddConfigEntry(configEntry);
-    syncedConfigEntry.SynchronizedConfig = synchronizedSetting;
+1.1.7
 
-    return configEntry;
-}
+- Added option for Blast Furnace to take all fuel.  Default is on.
+- Lots of code cleanup.
 
-ConfigEntry<T> config<T>(string group, string name, T value, string description, bool synchronizedSetting = true) => config(group, name, value, new ConfigDescription(description), synchronizedSetting);
-```
+1.16
+
+- Fix for smelter oject not set to an instance error.  Widmills and Spinning Wheels are smelters and they were causing errors when checking their smoke.
+
+
+1.15
+
+- Enabled the ability to turn off the verification of clients.  This keeps the server from kicking players that do not have the mod.
+- Added the ability to stack smelters and kilns.  
+
+1.1.4
+
+- Added ServerSync - Install on the Clients and Server and the Server will control the config.
+- fine tuned the container code to include custom chests and mods
+- confirmed working with Drawers Mod.
+
+1.1.3
+
+- Fixed the black iron chests and custom chest.  Can now pull from all containers
+- Confirmed working with Eitr Refinery
+
+1.1.2
+
+- Fixed the toggle key
+
+1.1.0
+
+- added the options for torches, campfires and hearths
+
+1.0.1
+
+- initial release
