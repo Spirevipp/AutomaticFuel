@@ -28,7 +28,7 @@ namespace AutomaticFuel
         public static ConfigEntry<float> smelterFuelRange;
         public static ConfigEntry<string> fuelDisallowTypes;
         public static ConfigEntry<string> oreDisallowTypes;
-        public static ConfigEntry<KeyboardShortcut> toggleKey;
+        public static ConfigEntry<KeyboardShortcut> toggleKeyNew;
         public static string toggleString = "Auto Fuel: {0}";
         public static ConfigEntry<bool> refuelStandingTorches;
         public static ConfigEntry<bool> refuelWallTorches;
@@ -41,8 +41,8 @@ namespace AutomaticFuel
         public static ConfigEntry<bool> isOn;
         public static ConfigEntry<bool> modEnabled;
         public static ConfigEntry<bool> distributedFilling;
-        public static ConfigEntry<int> nexusID;
-        public static ConfigEntry<bool> _configVerifyClient;
+  
+ 
         public static ConfigEntry<bool> configStackSmelters;
         public static ConfigEntry<bool> configBlastFurnaceTakesAll;
         internal static readonly List<Container> ContainerList = new();
@@ -54,7 +54,7 @@ namespace AutomaticFuel
         public static ConfigEntry<bool> turnOffWindmills;
         public static ConfigEntry<bool> turnOffSpinningWheel;
         internal static string ConnectionError = "";
-        public static bool configVerifyClient => _configVerifyClient.Value;
+ 
         public static float lastFuel;
         public static int fuelCount;
 
@@ -64,7 +64,12 @@ namespace AutomaticFuel
             BepInEx.Logging.Logger.CreateLogSource(ModName);
 
         private static readonly ConfigSync ConfigSync = new(ModGUID)
-        { DisplayName = ModName, CurrentVersion = ModVersion, MinimumRequiredVersion = ModVersion };
+        {  
+            DisplayName = ModName,
+            CurrentVersion = ModVersion,
+            MinimumRequiredVersion = ModVersion, 
+            ModRequired = true
+        };
 
         public enum Toggle
         {
@@ -78,7 +83,7 @@ namespace AutomaticFuel
             _serverConfigLocked = config("1 - General", "Lock Configuration", Toggle.On,
                 "If on, the configuration is locked and can be changed by server admins only.");
             _ = ConfigSync.AddLockingConfigEntry(_serverConfigLocked);
-            _configVerifyClient = config("", "Verify Clients", true, "Disable this to turn off the client verification and version checks.");
+           
             dropRange = config("General", "DropRange", 15f,
                 new ConfigDescription("The maximum range to pull dropped fuel",
                 new AcceptableValueRange<float>(1f, 50f)));
@@ -104,7 +109,7 @@ namespace AutomaticFuel
             configBlastFurnaceTakesAll = config("Smelters", "BlastFurnaceTakesAll", true, "Allows the Blast Furnace to take all ore");
             //toggleString = config("General", "ToggleString", "Auto Fuel: {0}", "Text to show on toggle. {0} is replaced with true/false");
 
-            toggleKey = config("General", "ToggleKey", new KeyboardShortcut(KeyCode.F10),
+            toggleKeyNew = config("General", "ToggleKey", new KeyboardShortcut(KeyCode.F10),
                 new ConfigDescription("HotKey to disable and enable AutoFuel", new AcceptableShortcuts()));
 
             turnOffWindmills = config("Smelters", "Turn Off Windmills", false, "Turn off the Windmills");
@@ -217,7 +222,7 @@ namespace AutomaticFuel
 
         private void Update()
         {
-            if (Input.GetKeyDown(toggleKey.Value.MainKey) && !TastyUtils.IgnoreKeyPresses(true))
+            if (Input.GetKeyDown(toggleKeyNew.Value.MainKey) && !TastyUtils.IgnoreKeyPresses(true))
             {
                 isOn.Value = !isOn.Value;
                 Config.Save();
