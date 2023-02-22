@@ -81,6 +81,10 @@ the same settings in their config files for optimal results.
 ### Version Information
 ___________________________
 
+1.3.1 
+
+- fixed rpc error and server synchronizing with client on first load
+
 1.3.0
 
 - add ability to turn off Spinning Wheel and Windmills
