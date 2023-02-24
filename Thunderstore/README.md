@@ -1,11 +1,10 @@
 # Automatic Fuel
 
 Fuels torches, campfires, windmills, spinning wheels, hearths, kilns and smelters
-
-- fixed rpc errors and server not synchronizing with clients after startup.
 - Fuels from the ground
 - Fuels from chests and custom chests
 - Stack Smelters - Default is True:  Removes most smoke and isblocked check
+- Remove the ServerSync Version and Client checks.  Default is True and does check.  Can be turned off in the config.
 - Blast Furnace can take all Fuel - NEW - 
 
 I'll do my best to help with any issues.  
@@ -35,6 +34,7 @@ You can adjust the config values by editing this file using a text editor or in-
 
 |Config Option|Definition
 |---|---|
+|verifyClient| This turns on and off the need to verify other clients.  Users can now play without the mod on a server with the mod.|
 |fireplaceRange| The maximum range to pull fuel from containers for fireplaces|
 |smelterOreRange| The maximum range to pull fuel from containers for smelters|
 |smelterFuelRange| The maximum range to pull ore from containers for smelters|
@@ -76,14 +76,13 @@ The server config will push down.
 For Servers that cannot use mods, simply install this on the clients only and it will work just fine.  Clients will all need
 the same settings in their config files for optimal results.
 
-
+For people that run a server and don't want to verify clients turn the "verifyclients" setting off.
 ``````
 ### Version Information
 ___________________________
 
-1.3.1 
+1.3.4 - fixed several RPC bugs and bumped version for incorrect README.MD
 
-- fixed rpc error and server synchronizing with client on first load
 
 1.3.0
 

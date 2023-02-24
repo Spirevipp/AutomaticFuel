@@ -14,7 +14,7 @@ namespace AutomaticFuel
     public class AutomaticFuelPlugin : BaseUnityPlugin
     {
         internal const string ModName = "AutomaticFuel";
-        internal const string ModVersion = "1.3.1";
+        internal const string ModVersion = "1.3.4";
         internal const string Author = "TastyChickenLegs";
         private const string ModGUID = Author + "." + ModName;
         private static string ConfigFileName = ModGUID + ".cfg";
@@ -28,8 +28,8 @@ namespace AutomaticFuel
         public static ConfigEntry<float> smelterFuelRange;
         public static ConfigEntry<string> fuelDisallowTypes;
         public static ConfigEntry<string> oreDisallowTypes;
-        public static ConfigEntry<KeyboardShortcut> toggleKeyNew;
-        public static string toggleString = "Auto Fuel: {0}";
+       // public static ConfigEntry<KeyboardShortcut> toggleKeyNew;
+        //public static string toggleString = "Auto Fuel: {0}";
         public static ConfigEntry<bool> refuelStandingTorches;
         public static ConfigEntry<bool> refuelWallTorches;
         public static ConfigEntry<bool> refuelFirePits;
@@ -64,12 +64,7 @@ namespace AutomaticFuel
             BepInEx.Logging.Logger.CreateLogSource(ModName);
 
         private static readonly ConfigSync ConfigSync = new(ModGUID)
-        {  
-            DisplayName = ModName,
-            CurrentVersion = ModVersion,
-            MinimumRequiredVersion = ModVersion, 
-            ModRequired = true
-        };
+        { DisplayName = ModName, CurrentVersion = ModVersion, MinimumRequiredVersion = ModVersion };
 
         public enum Toggle
         {
@@ -109,8 +104,8 @@ namespace AutomaticFuel
             configBlastFurnaceTakesAll = config("Smelters", "BlastFurnaceTakesAll", true, "Allows the Blast Furnace to take all ore");
             //toggleString = config("General", "ToggleString", "Auto Fuel: {0}", "Text to show on toggle. {0} is replaced with true/false");
 
-            toggleKeyNew = config("General", "ToggleKey", new KeyboardShortcut(KeyCode.F10),
-                new ConfigDescription("HotKey to disable and enable AutoFuel", new AcceptableShortcuts()));
+            //toggleKeyNew = config("General", "ToggleKey", new KeyboardShortcut(KeyCode.F10),
+              //  new ConfigDescription("HotKey to disable and enable AutoFuel", new AcceptableShortcuts()));
 
             turnOffWindmills = config("Smelters", "Turn Off Windmills", false, "Turn off the Windmills");
             turnOffSpinningWheel = config("Smelters", "Turn Off SpinningWheel", false, "Turn off the Spinnng Wheel");
@@ -220,15 +215,15 @@ namespace AutomaticFuel
                 Debug.Log((pref ? typeof(AutomaticFuelPlugin).Namespace + " " : "") + str);
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(toggleKeyNew.Value.MainKey) && !TastyUtils.IgnoreKeyPresses(true))
-            {
-                isOn.Value = !isOn.Value;
-                Config.Save();
-                Player.m_localPlayer.Message(MessageHud.MessageType.Center, string.Format(toggleString, isOn.Value), 0, null);
-            }
-        }
+        //private void Update()
+        //{
+        //    //if (Input.GetKeyDown(toggleKeyNew.Value.MainKey) && !TastyUtils.IgnoreKeyPresses(true))
+        //    //{
+        //    //    isOn.Value = !isOn.Value;
+        //    //    Config.Save();
+        //    //    Player.m_localPlayer.Message(MessageHud.MessageType.Center, string.Format(toggleString, isOn.Value), 0, null);
+        //    //}
+        //}
 
         // Container Patches
         [HarmonyPatch(typeof(Container), nameof(Container.Awake))]
