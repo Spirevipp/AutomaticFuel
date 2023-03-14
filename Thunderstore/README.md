@@ -81,6 +81,11 @@ For people that run a server and don't want to verify clients turn the "verifycl
 ### Version Information
 ___________________________
 
+1.3.5
+
+- updated to the newest version of Valheiml 0.214.2
+- added back the toggle to turn off and on Automatic Fueling.
+
 1.3.4 - fixed several RPC bugs and bumped version for incorrect README.MD
 
 
@@ -142,3 +147,16 @@ ___________________________
 1.0.1
 
 - initial release
+
+##	Now for the shameless plug
+
+> ### My Other Mods:
+>>* [No Smoke Stay Lit](https://valheim.thunderstore.io/package/TastyChickenLeg/NoSmokeStayLit/)
+>>* [No Smoke Simplified](https://valheim.thunderstore.io/package/TastyChickenLegs/NoSmokeSimplified/)
+>>* [Honey Please](https://valheim.thunderstore.io/package/TastyChickenLegs/HoneyPlease/)
+>>* [Automatic Fuel](https://valheim.thunderstore.io/package/TastyChickenLeg/AutomaticFuel/)
+>>* [Forsaken Powers Plus](https://valheim.thunderstore.io/package/TastyChickenLeg/ForsakenPowersPlus/)
+>>* [Recycle Plus](https://valheim.thunderstore.io/package/TastyChickenLeg/RecyclePlus/)
+>>* [Blast Furnace Takes All](https://valheim.thunderstore.io/package/TastyChickenLeg/BlastFurnaceTakesAll/)
+>>* [Timed Torches Stay Lit](https://valheim.thunderstore.io/package/TastyChickenLeg/TimedTorchesStayLit/)
+>>* [Drop More Loot](https://valheim.thunderstore.io/package/TastyChickenLegs/DropMoreLoot/)

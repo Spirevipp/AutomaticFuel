@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using BepInEx;
@@ -14,7 +15,7 @@ namespace AutomaticFuel
     public class AutomaticFuelPlugin : BaseUnityPlugin
     {
         internal const string ModName = "AutomaticFuel";
-        internal const string ModVersion = "1.3.4";
+        internal const string ModVersion = "1.3.5";
         internal const string Author = "TastyChickenLegs";
         private const string ModGUID = Author + "." + ModName;
         private static string ConfigFileName = ModGUID + ".cfg";
@@ -28,8 +29,8 @@ namespace AutomaticFuel
         public static ConfigEntry<float> smelterFuelRange;
         public static ConfigEntry<string> fuelDisallowTypes;
         public static ConfigEntry<string> oreDisallowTypes;
-       // public static ConfigEntry<KeyboardShortcut> toggleKeyNew;
-        //public static string toggleString = "Auto Fuel: {0}";
+        public static ConfigEntry<KeyCode> toggleKeythree;
+        public static string toggleString = "Auto Fuel: {0}";
         public static ConfigEntry<bool> refuelStandingTorches;
         public static ConfigEntry<bool> refuelWallTorches;
         public static ConfigEntry<bool> refuelFirePits;
@@ -105,8 +106,9 @@ namespace AutomaticFuel
             //toggleString = config("General", "ToggleString", "Auto Fuel: {0}", "Text to show on toggle. {0} is replaced with true/false");
 
             //toggleKeyNew = config("General", "ToggleKey", new KeyboardShortcut(KeyCode.F10),
-              //  new ConfigDescription("HotKey to disable and enable AutoFuel", new AcceptableShortcuts()));
+            //new ConfigDescription("HotKey to disable and enable AutoFuel", new AcceptableShortcuts()));
 
+            toggleKeythree = config("General", "ToggleKey", KeyCode.F10, "Key to toggle behaviour. Leave blank to disable the toggle key. Use https://docs.unity3d.com/Manual/ConventionalGameInput.html");
             turnOffWindmills = config("Smelters", "Turn Off Windmills", false, "Turn off the Windmills");
             turnOffSpinningWheel = config("Smelters", "Turn Off SpinningWheel", false, "Turn off the Spinnng Wheel");
             turnOffKiln = config("Smelters", "Turn Off Kiln", false, "Turn off the Kiln");
@@ -195,18 +197,7 @@ namespace AutomaticFuel
             public bool? Browsable = false;
         }
 
-        class AcceptableShortcuts : AcceptableValueBase
-        {
-            public AcceptableShortcuts() : base(typeof(KeyboardShortcut))
-            {
-            }
 
-            public override object Clamp(object value) => value;
-            public override bool IsValid(object value) => true;
-
-            public override string ToDescriptionString() =>
-                "# Acceptable values: " + string.Join(", ", KeyboardShortcut.AllKeyCodes);
-        }
 
         #endregion
         public static void Dbgl(string str = "", bool pref = true)
@@ -215,15 +206,15 @@ namespace AutomaticFuel
                 Debug.Log((pref ? typeof(AutomaticFuelPlugin).Namespace + " " : "") + str);
         }
 
-        //private void Update()
-        //{
-        //    //if (Input.GetKeyDown(toggleKeyNew.Value.MainKey) && !TastyUtils.IgnoreKeyPresses(true))
-        //    //{
-        //    //    isOn.Value = !isOn.Value;
-        //    //    Config.Save();
-        //    //    Player.m_localPlayer.Message(MessageHud.MessageType.Center, string.Format(toggleString, isOn.Value), 0, null);
-        //    //}
-        //}
+        private void Update()
+        {
+            if (Input.GetKeyDown(toggleKeythree.Value) && !TastyUtils.IgnoreKeyPresses(true))
+            {
+                isOn.Value = !isOn.Value;
+                Config.Save();
+                Player.m_localPlayer.Message(MessageHud.MessageType.Center, string.Format(toggleString, isOn.Value), 0, null);
+            }
+        }
 
         // Container Patches
         [HarmonyPatch(typeof(Container), nameof(Container.Awake))]
