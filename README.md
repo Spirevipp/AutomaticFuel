@@ -12,9 +12,9 @@ I'll do my best to help with any issues.
 [Reach Me on Discord](https://discord.com/users/TastyChickenLegs#4818)
 ### About the Mod:
 __________________
-<b>from Aedenthorn's AutoFuel Mod </b>
 
-#### Rebuilt by TastyChickenLegs now with ServerSync
+
+#### now with ServerSync
 
 #### Mistlands Compatible
 
