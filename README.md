@@ -12,9 +12,9 @@ I'll do my best to help with any issues.
 [Reach Me on Discord](https://discord.com/users/TastyChickenLegs#4818)
 ### About the Mod:
 __________________
-<b>from Aedenthorn's AutoFuel Mod </b>
 
-#### Rebuilt by TastyChickenLegs now with ServerSync
+
+#### now with ServerSync
 
 #### Mistlands Compatible
 
@@ -161,18 +161,3 @@ ___________________________
 1.0.1
 
 - initial release
-
-##	Now for the shameless plug
-
-> ### My Other Mods:
->>* [Drop More Loot](https://valheim.thunderstore.io/package/TastyChickenLegs/DropMoreLoot/)
->>* [Automatic Fermenters](https://valheim.thunderstore.io/package/TastyChickenLegs/AutomaticFermenters/)
->>* [No Smoke Stay Lit](https://valheim.thunderstore.io/package/TastyChickenLeg/NoSmokeStayLit/)
->>* [No Smoke Simplified](https://valheim.thunderstore.io/package/TastyChickenLegs/NoSmokeSimplified/)
->>* [Honey Please](https://valheim.thunderstore.io/package/TastyChickenLegs/HoneyPlease/)
->>* [Automatic Fuel](https://valheim.thunderstore.io/package/TastyChickenLeg/AutomaticFuel/)
->>* [Forsaken Powers Plus](https://valheim.thunderstore.io/package/TastyChickenLeg/ForsakenPowersPlus/)
->>* [Recycle Plus](https://valheim.thunderstore.io/package/TastyChickenLeg/RecyclePlus/)
->>* [Blast Furnace Takes All](https://valheim.thunderstore.io/package/TastyChickenLeg/BlastFurnaceTakesAll/)
->>* [Timed Torches Stay Lit](https://valheim.thunderstore.io/package/TastyChickenLeg/TimedTorchesStayLit/)
->>* [Automatic Fermenters](https://valheim.thunderstore.io/package/TastyChickenLegs/AutomaticFermenters/)
