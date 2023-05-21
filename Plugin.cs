@@ -15,7 +15,7 @@ namespace AutomaticFuel
     public class AutomaticFuelPlugin : BaseUnityPlugin
     {
         internal const string ModName = "AutomaticFuel";
-        internal const string ModVersion = "1.3.5";
+        internal const string ModVersion = "1.3.7";
         internal const string Author = "TastyChickenLegs";
         private const string ModGUID = Author + "." + ModName;
         private static string ConfigFileName = ModGUID + ".cfg";
@@ -87,14 +87,14 @@ namespace AutomaticFuel
                  new ConfigDescription("The maximum range to pull fuel from containers for fireplaces",
                  new AcceptableValueRange<float>(1f, 50f)));
             smelterOreRange = config("Smelters", "SmelterOreRange", 15f,
-                             new ConfigDescription("The maximum range to pull fuel from containers for smelters",
-                             new AcceptableValueRange<float>(1f, 50f)));
-            smelterFuelRange = config("Smelters", "SmelterFuelRange", 15f,
                              new ConfigDescription("The maximum range to pull ore from containers for smelters",
                              new AcceptableValueRange<float>(1f, 50f)));
+            smelterFuelRange = config("Smelters", "SmelterFuelRange", 15f,
+                             new ConfigDescription("The maximum range to pull fuel from containers for smelters",
+                             new AcceptableValueRange<float>(1f, 50f)));
             restrictKilnOutputAmount = config("Smelters", "RestrictKilnOutputAmount", 50,
-                new ConfigDescription("Amount of coal to shut off kiln fueling max 200",
-                new AcceptableValueRange<int>(1, 200)));
+                new ConfigDescription("Amount of coal to shut off kiln fueling max 1000",
+                new AcceptableValueRange<int>(1, 1000)));
 
 
 

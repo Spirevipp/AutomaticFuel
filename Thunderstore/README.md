@@ -81,6 +81,12 @@ For people that run a server and don't want to verify clients turn the "verifycl
 ### Version Information
 ___________________________
 
+1.3.6
+
+- Updated to newest BepInEx and Valheim Patch 0.214.300
+
+
+
 1.3.5
 
 - updated to the newest version of Valheiml 0.214.2
@@ -151,6 +157,8 @@ ___________________________
 ##	Now for the shameless plug
 
 > ### My Other Mods:
+>>* [Drop More Loot](https://valheim.thunderstore.io/package/TastyChickenLegs/DropMoreLoot/)
+>>* [Automatic Fermenters](https://valheim.thunderstore.io/package/TastyChickenLegs/AutomaticFermenters/)
 >>* [No Smoke Stay Lit](https://valheim.thunderstore.io/package/TastyChickenLeg/NoSmokeStayLit/)
 >>* [No Smoke Simplified](https://valheim.thunderstore.io/package/TastyChickenLegs/NoSmokeSimplified/)
 >>* [Honey Please](https://valheim.thunderstore.io/package/TastyChickenLegs/HoneyPlease/)
@@ -159,4 +167,4 @@ ___________________________
 >>* [Recycle Plus](https://valheim.thunderstore.io/package/TastyChickenLeg/RecyclePlus/)
 >>* [Blast Furnace Takes All](https://valheim.thunderstore.io/package/TastyChickenLeg/BlastFurnaceTakesAll/)
 >>* [Timed Torches Stay Lit](https://valheim.thunderstore.io/package/TastyChickenLeg/TimedTorchesStayLit/)
->>* [Drop More Loot](https://valheim.thunderstore.io/package/TastyChickenLegs/DropMoreLoot/)
+>>* [Automatic Fermenters](https://valheim.thunderstore.io/package/TastyChickenLegs/AutomaticFermenters/)
